@@ -1,13 +1,14 @@
 import os
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from flask_socketio import SocketIO, emit
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 socketio = SocketIO(app)
 
-channels = []
+channels = {}
+channel_names = []
 
 @app.route("/")
 def index():
@@ -21,9 +22,11 @@ def login():
     password = request.form.get('password')
 
     for i in range(1, 31):
-        channels.append(f"Channel #{i}")
+        channel_names.append(f"Channel #{i}")
+        channels[f"Channel #{i}"] = []
 
-    return render_template("main.html", channels=channels)
+    # print(channels)
+    return render_template("main.html", channels=channel_names)
 
 
 @app.route("/message", methods=["POST"])
@@ -34,7 +37,7 @@ def message():
     return message
 
 
-@app.route("/channel", methods=["POST", "GET"])
+@app.route("/channel", methods=["POST"])
 def channel():
-    
-    return jsonify({"Some data": "Somedata"})
+    print("Working python\n\n")
+    return jsonify({"channel": "Working"})
