@@ -23,7 +23,7 @@ body {
 .my-custom-scrollbar {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   overflow: auto; }
 
 #sendMessage {
