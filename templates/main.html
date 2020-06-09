@@ -1,6 +1,7 @@
 <!-- This is the main maessaging page -->
 {% extends "layout.html" %} {% block title %} {{title}} {% endblock %} {% block imports %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+<script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
 <script>
     var myCustomScrollbar = document.querySelector('.my-custom-scrollbar');
     var ps = new PerfectScrollbar(myCustomScrollbar);
@@ -21,7 +22,7 @@
                 <div class="my-custom-scrollbar scrollbar-lady-lips">
                     <ul class="nav flex-column">
                         {% for channel in channels %}
-                        <li class="nav-item"><a class="h4" href="#">{{ channel }}</a></li>
+                        <li class="nav-item"><a class="h4 messaging-channel" href="#">{{ channel }}</a></li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -30,11 +31,13 @@
         <div class="col-sm-9">
             <div id="messageBox">
                 This will have the messages
+                <!-- Message box -->
                 <div class="msj-rta macro">
                     <div class="text text-r" style="background:whitesmoke !important">
                         <input class="mytext" placeholder="Type a message" disabled/>
                     </div>
                 </div>
+
                 <div id="sendMessage" class="fixed-bottom">
                     <form action="{{ url_for('message') }}" method="POST">
                         <div class="row">

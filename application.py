@@ -32,3 +32,9 @@ def message():
     message = request.form.get('message')
 
     return message
+
+
+@app.route("/channel", methods=["POST", "GET"])
+def channel():
+    
+    return jsonify({"Some data": "Somedata"})
