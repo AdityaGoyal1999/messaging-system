@@ -1,0 +1,21 @@
+body {
+    position: relative;
+}
+
+#channelBox {
+    // max-width: 14rem !important;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #455dc7;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    // z-index: 1;
+}
+
+#messageBox {
+    background-color: cyan;
+    width: 100%;
+    min-height: 100vh;
+}

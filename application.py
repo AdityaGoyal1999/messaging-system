@@ -19,4 +19,4 @@ def login():
     username = request.form.get("username")
     password = request.form.get('password')
 
-    return f"{username} {password}"
+    return render_template("main.html")

@@ -1,0 +1,18 @@
+body {
+  position: relative; }
+
+#channelBox {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #455dc7;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0; }
+
+#messageBox {
+  background-color: cyan;
+  width: 100%;
+  min-height: 100vh; }
+
+/*# sourceMappingURL=main.css.map */
