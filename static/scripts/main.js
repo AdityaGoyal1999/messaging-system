@@ -2,6 +2,6 @@
 
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".messaging-channel").onclick = () => {
-        window.alert(`${document.querySelector(".messaging-channel").value} is clicked.`)
+        window.alert(`${document.querySelector(".messaging-channel").innerHTML} is clicked.`)
     };
 });
