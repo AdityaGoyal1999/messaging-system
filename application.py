@@ -20,8 +20,8 @@ def login():
     username = request.form.get("username")
     password = request.form.get('password')
 
-    for i in range(1, 31):
-        channels.append(f"Channel #{i}")
+    # for i in range(1, 31):
+    #     channels.append(f"Channel #{i}")
 
     return render_template("main.html", channels=channels)
 
