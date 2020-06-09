@@ -3,7 +3,7 @@ body {
 
 #channelBox {
   width: 100%;
-  height: 100vh;
+  height: 86.5vh;
   background-color: #455dc7;
   position: absolute;
   top: 0;
@@ -13,7 +13,7 @@ body {
 #messageBox {
   background-color: cyan;
   width: 100%;
-  height: 100vh;
+  height: 86.5vh;
   padding: 20px;
   position: absolute;
   top: 0;
@@ -23,7 +23,7 @@ body {
 .my-custom-scrollbar {
   position: relative;
   width: 100%;
-  height: 90vh;
+  height: 80vh;
   overflow: auto; }
 
 #sendMessage {
