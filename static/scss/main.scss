@@ -35,3 +35,38 @@ body {
     z-index: 1;
     padding: 10px;
 }
+
+// Added from a project
+.mytext {
+    border: 0;
+    padding: 10px;
+    background: whitesmoke;
+}
+
+.text {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+}
+
+.text-r {
+    float: right;
+    padding-left: 10px;
+}
+
+.msj-rta {
+    float: right;
+    background: whitesmoke;
+}
+
+.macro {
+    margin-top: 5px;
+    width: 85%;
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+}
+
+.nav-item {
+    text-align: center;
+}
