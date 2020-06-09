@@ -13,6 +13,18 @@ body {
 #messageBox {
   background-color: cyan;
   width: 100%;
-  min-height: 100vh; }
+  min-height: 100vh;
+  padding: 20px; }
+
+.my-custom-scrollbar {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: auto; }
+
+#sendMessage {
+  position: absolute;
+  z-index: 1;
+  padding: 10px; }
 
 /*# sourceMappingURL=main.css.map */

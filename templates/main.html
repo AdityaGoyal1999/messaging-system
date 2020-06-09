@@ -1,17 +1,49 @@
 <!-- This is the main maessaging page -->
 {% extends "layout.html" %} {% block title %} {{title}} {% endblock %} {% block imports %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"> {% endblock %} {% block body %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+<script>
+    var myCustomScrollbar = document.querySelector('.my-custom-scrollbar');
+    var ps = new PerfectScrollbar(myCustomScrollbar);
+
+    var scrollbarY = myCustomScrollbar.querySelector('.ps__rail-y');
+
+    myCustomScrollbar.onscroll = function() {
+        scrollbarY.style.cssText = `top: ${this.scrollTop}px!important; height: 400px; right: ${-this.scrollLeft}px`;
+    }
+</script>
+{% endblock %} {% block body %}
 <h1>Messages</h1>
 <div>
     <div class="row no-gutters">
-        <div class="col-sm-3 no-gutters">
+        <div class="col-sm-3">
             <div id="channelBox">
-                These will have the channels
+                <h3>Channels</h3>
+                <div class="my-custom-scrollbar scrollbar-lady-lips">
+                    <ul>
+                        {% for nums in data %}
+                        <li>{{ nums }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
         </div>
-        <div class="col-sm-9 no-gutters">
+        <div class="col-sm-9">
             <div id="messageBox">
                 This will have the messages
+                <div id="sendMessage" class="fixed-bottom">
+                    <form>
+                        <div class="row">
+                            <div class="col-sm-11">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="message" placeholder="Enter message" name="message">
+                                </div>
+                            </div>
+                            <div class="col-sm-1">
+                                <button type="submit" class="btn btn-primary">Send</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
