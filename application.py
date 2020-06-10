@@ -27,7 +27,7 @@ def login():
             channels[f"Channel #{i}"] = []
 
     # print(channels)
-    return render_template("main.html", channels=channel_names)
+    return render_template("main.html", channels=channel_names, username=username)
 
 
 @app.route("/message", methods=["POST"])

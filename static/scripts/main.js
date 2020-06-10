@@ -4,6 +4,9 @@ const message_template_receive = Handlebars.compile(document.querySelector("#rec
 document.addEventListener("DOMContentLoaded", () => {
 
     // Connect to websocket
+    // window.alert(document.querySelector("#username-data").name);
+    localStorage.setItem("username", document.querySelector("#username-data").name);
+
     var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
 
     socket.on('connect', () => {
