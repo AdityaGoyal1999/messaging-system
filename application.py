@@ -37,7 +37,7 @@ def message():
     return message
 
 
-@app.route("/channel", methods=["POST"])
+@app.route("/channel", methods=["POST", "GET"])
 def channel():
     print("Working python\n\n")
     return jsonify({"channel": "Working"})

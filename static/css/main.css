@@ -23,10 +23,11 @@ body {
 .my-custom-scrollbar {
   position: relative;
   width: 100%;
-  height: 80vh;
+  height: 70vh;
   overflow: auto; }
 
-#sendMessage {
+#sendMessage,
+#createChannel {
   position: absolute;
   z-index: 1;
   padding: 10px; }

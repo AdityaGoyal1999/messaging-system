@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
         var request = new XMLHttpRequest();
         request.open("POST", "/channel");
         // TODO: All links are not working
-        window.alert("works");
+        // window.alert(`${channelName}`);
         request.onload = () => {
             const response = JSON.parse(request.responseText);
             const messages = response.channel;
