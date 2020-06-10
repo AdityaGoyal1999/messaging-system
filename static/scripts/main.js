@@ -39,8 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function sendMessage(messages) {
         const userSendingMessage = message_template_send({ "messageContent": messages[0], "user": "Adi" });
         document.querySelector("#messages").innerHTML += userSendingMessage;
-        socket.emit("send message", { "selection": message[0] });
-
+        socket.emit("send message", { "selection": messages[1] });
     }
 
     // When a new vote is announced, add to the unordered list
@@ -48,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // const li = document.createElement('li');
         // li.innerHTML = `Vote recorded: ${data.selection}`;
         // document.querySelector('#votes').append(li);
-        const userReceivingMessage = message_template_send({ "messageContent": messages[0], "user": "Adi" });
-        document.querySelector("#messages").innerHTML += userSendingMessage;
+        const userReceivingMessage = message_template_receive({ "messageContent": messages[0], "user": "Adi" });
+        document.querySelector("#messages").innerHTML += userReceivingMessage;
     });
 });

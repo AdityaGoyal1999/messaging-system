@@ -61,5 +61,6 @@ def channel():
 @socketio.on("send message")
 def send_message(data):
     print("Writing\n\n")
+    print(data)
     selection = data["selection"]
     emit("announce message", {"selection": selection}, broadcast=True)
