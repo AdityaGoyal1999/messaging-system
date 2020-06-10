@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect, url_for
 from flask_socketio import SocketIO, emit
 
 app = Flask(__name__)
@@ -15,15 +15,16 @@ def index():
     return render_template("index.html", title="Welcome")
 
 
-@app.route("/login", methods=["POST"])
+@app.route("/login", methods=["POST", "GET"])
 def login():
 
     username = request.form.get("username")
     password = request.form.get('password')
 
     for i in range(1, 31):
-        channel_names.append(f"Channel #{i}")
-        channels[f"Channel #{i}"] = []
+        if f"Channel #{i}" not in channel_names:
+            channel_names.append(f"Channel #{i}")
+            channels[f"Channel #{i}"] = []
 
     # print(channels)
     return render_template("main.html", channels=channel_names)
@@ -37,7 +38,21 @@ def message():
     return message
 
 
+@app.route("/createChannel", methods=["POST", "GET"])
+def create_channel():
+
+    new_channel = request.form.get('newChannelName')
+    if(new_channel not in channel_names):
+        channel_names.append(new_channel)
+        channels[new_channel] = []
+        print(channel_names)
+        # TODO: might not be the right thing to do.
+        return render_template("main.html", channels=channel_names)
+    else:
+        return "Wait"
+
 @app.route("/channel", methods=["POST", "GET"])
 def channel():
-    print("Working python\n\n")
-    return jsonify({"channel": "Working"})
+    channel_name = request.form.get("channel")
+    print(f"{channels[channel_name]}\n\n")
+    return jsonify({"channel": ["Lorem", "Ipsum", "Yadi-yadi-yada"]})
