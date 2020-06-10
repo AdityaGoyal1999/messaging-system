@@ -41,7 +41,7 @@
         <div class="col-sm-3">
             <div id="channelBox">
                 <h2>Channels</h2>
-                <div class="my-custom-scrollbar scrollbar-lady-lips">
+                <div class="my-custom-scrollbar scrollbar scrollbar-lady-lips">
                     <ul class="nav flex-column">
                         {% for channel in channels %}
                         <li class="nav-item"><a href="" id="{{channel}}" class="messaging-channel">{{ channel }}</a></li>
@@ -67,13 +67,9 @@
         <div class="col-sm-9">
             <div id="messageBox">
                 <h2 id="messageHeading"></h2>
-                <!-- Message box -->
-                <!-- <div class="msj-rta macro">
-                    <div class="text text-r" style="background:whitesmoke !important">
-                        <input class="mytext" id="checkingMessage" disabled/>
-                    </div>
-                </div> -->
-
+                <div class="my-custom-scrollbar scrollbar scrollbar-lady-lips">
+                    <div id="messages"></div>
+                </div>
                 <div id="sendMessage" class="fixed-bottom">
                     <form action="{{ url_for('message') }}" method="POST">
                         <div class="row">

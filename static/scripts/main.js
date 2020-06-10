@@ -37,8 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     function sendMessage(messages) {
-        const userSendingMessage = message_template_receive({ "messageContent": messages[0] });
-        document.querySelector("#messageBox").innerHTML += userSendingMessage;
+        const userSendingMessage = message_template_send({ "messageContent": messages[0] });
+        document.querySelector("#messages").innerHTML += userSendingMessage;
 
     }
 });
