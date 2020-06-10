@@ -8,7 +8,9 @@
     <div class="msj-rta macro">
         <div class="text text-r" style="background:whitesmoke !important">
             {% raw -%}
-            <input class="mytextSend" id="checkingMessage" value="{{ messageContent }}" disabled/> {%- endraw %}
+            <h6>{{user}}</h6>
+            <!-- TODO: Change input to <p> -->
+            <input class="mytextSend" id="sendingMessageText" value="{{ messageContent }}" disabled/> {%- endraw %}
         </div>
     </div>
 </script>
@@ -17,7 +19,8 @@
     <div class="msj macro">
         <div class="text text-r" style="background:white !important">
             {% raw -%}
-            <input class="mytextReceive" id="checkingMessage" value="{{ messageContent }}" disabled/> {%- endraw %}
+            <h6>{{user}}</h6>
+            <input class="mytextReceive" id="receivingMessageText" value="{{ messageContent }}" disabled/> {%- endraw %}
         </div>
     </div>
 </script>

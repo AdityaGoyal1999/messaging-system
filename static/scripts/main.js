@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     function sendMessage(messages) {
-        const userSendingMessage = message_template_send({ "messageContent": messages[0] });
+        const userSendingMessage = message_template_send({ "messageContent": messages[0], "user": "Adi" });
         document.querySelector("#messages").innerHTML += userSendingMessage;
 
     }

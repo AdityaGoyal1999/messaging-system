@@ -55,4 +55,4 @@ def create_channel():
 def channel():
     channel_name = request.form.get("channel")
     print(f"{channels[channel_name]}\n\n")
-    return jsonify({"channel": ["Lorem", "Ipsum", "Yadi-yadi-yada"]})
+    return jsonify({"channel": ["Lorem af;kjfa;ksdl a;fjal; ajksd;lfjha sfdhakj fjdkshf s fkdhfor firalhdfjkh akldjhflksf;jl;jas;dlkfja;ldkfja;lsfj f f f f f f f f  f f f f ff f  ff  f ahjfdljahfdjsdhfkjsf sdhfk", "Ipsum", "Yadi-yadi-yada"]})
