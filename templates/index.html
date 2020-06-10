@@ -1,4 +1,14 @@
-{% extends "layout.html" %} {% block title %}{{ title }}{% endblock %} {% block imports %} {% endblock %} {% block body %}
+{% extends "layout.html" %} {% block title %}{{ title }}{% endblock %} {% block imports %}
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelector(".submit-button").onclick = () => {
+            name = document.querySelector("username").value;
+            window.alert(name);
+            localStorage.setItem('username', name);
+        };
+    });
+</script>
+{% endblock %} {% block body %}
 <h1>Welcome to Flack</h1>
 <div class="container">
     <form action="{{ url_for('login') }}" method="POST">
@@ -12,7 +22,7 @@
             <label for="password">Password</label>
             <input type="password" class="form-control" id="password" placeholder="Enter Password" name="password">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary submit-button">Submit</button>
     </form>
 </div>
 {% endblock %}

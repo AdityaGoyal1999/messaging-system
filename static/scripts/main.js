@@ -8,8 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     socket.on('connect', () => {
 
-
-
         document.querySelectorAll(".messaging-channel").forEach(link => {
             link.onclick = () => {
                 // window.alert("link clicked");
@@ -37,16 +35,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     function sendMessage(messages) {
-        const userSendingMessage = message_template_send({ "messageContent": messages[0], "user": "Adi" });
-        document.querySelector("#messages").innerHTML += userSendingMessage;
-        socket.emit("send message", { "selection": messages[1] });
+        for (let i = 0; i < messages.length; i++) {
+            if (localStorage.getItem('username') === messages[i][1]) {
+                var userSendingMessage = message_template_send({ "messageContent": messages[i][0], "user": messages[i][1] });
+                document.querySelector("#messages").innerHTML += userSendingMessage;
+                // socket.emit("")
+            } else {
+                var userReceivingMessage = message_template_receive({ "messageContent": messages[i][0], "user": messages[i][1] });
+                document.querySelector("#messages").innerHTML += userReceivingMessage;
+            }
+        }
+
+        // const userSendingMessage = message_template_send({ "messageContent": messages[0], "user": "Adi" });
+        // document.querySelector("#messages").innerHTML += userSendingMessage;
+        // socket.emit("send message", { "selection": messages[1] });
     }
 
     // When a new vote is announced, add to the unordered list
     socket.on("announce message", data => {
-        // const li = document.createElement('li');
-        // li.innerHTML = `Vote recorded: ${data.selection}`;
-        // document.querySelector('#votes').append(li);
         const userReceivingMessage = message_template_receive({ "messageContent": messages[0], "user": "Adi" });
         document.querySelector("#messages").innerHTML += userReceivingMessage;
     });

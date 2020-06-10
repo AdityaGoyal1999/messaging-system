@@ -11,7 +11,7 @@
             {% raw -%}
             <h6>{{user}}</h6>
             <!-- TODO: Change input to <p> -->
-            <input class="mytextSend" id="sendingMessageText" value="{{ messageContent }}" disabled/> {%- endraw %}
+            <p class="mytextSend" id="sendingMessageText">{{ messageContent }}</p> {%- endraw %}
         </div>
     </div>
 </script>
@@ -21,7 +21,7 @@
         <div class="text text-r" style="background:white !important">
             {% raw -%}
             <h6>{{user}}</h6>
-            <input class="mytextReceive" id="receivingMessageText" value="{{ messageContent }}" disabled/> {%- endraw %}
+            <p class="mytextReceive" id="receivingMessageText">{{ messageContent }}</p> {%- endraw %}
         </div>
     </div>
 </script>
