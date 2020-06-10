@@ -1,7 +1,18 @@
 <!-- This is the main maessaging page -->
 {% extends "layout.html" %} {% block title %} {{title}} {% endblock %} {% block imports %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-<script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+
+<script type="text/x-handlebars-template" id="sendingMessage">
+    <div class="msj-rta macro">
+        <div class="text text-r" style="background:whitesmoke !important">
+            {% raw -%}
+            <input class="mytext" id="checkingMessage" value="{{ messageContent }}" disabled/> {%- endraw %}
+        </div>
+    </div>
+</script>
+
 <script>
     var myCustomScrollbar = document.querySelector('.my-custom-scrollbar');
     var ps = new PerfectScrollbar(myCustomScrollbar);
@@ -12,6 +23,8 @@
         scrollbarY.style.cssText = `top: ${this.scrollTop}px!important; height: 400px; right: ${-this.scrollLeft}px`;
     }
 </script>
+
+<script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
 {% endblock %} {% block body %}
 <h1>Messages</h1>
 <div>
@@ -46,11 +59,11 @@
             <div id="messageBox">
                 This will have the messages
                 <!-- Message box -->
-                <div class="msj-rta macro">
+                <!-- <div class="msj-rta macro">
                     <div class="text text-r" style="background:whitesmoke !important">
-                        <input class="mytext" placeholder="Type a message" disabled/>
+                        <input class="mytext" id="checkingMessage" disabled/>
                     </div>
-                </div>
+                </div> -->
 
                 <div id="checker"></div>
 

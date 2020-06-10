@@ -1,6 +1,10 @@
-// window.alert("Connected");
+const message_template = Handlebars.compile(document.querySelector("#sendingMessage").innerHTML);
 
 document.addEventListener("DOMContentLoaded", () => {
+    // document.querySelector("#checkingMessage").value = "Nice";
+
+    // const message_template = handlebars.compile(document.querySelector("#sendingMessage").innerHTML);
+
     document.querySelectorAll(".messaging-channel").forEach(link => {
         link.onclick = () => {
             // window.alert("link clicked");
@@ -11,33 +15,26 @@ document.addEventListener("DOMContentLoaded", () => {
             request.onload = () => {
                 const response = JSON.parse(request.responseText);
                 const messages = response.channel;
-                window.alert("Works");
-                console.log("This is working");
+                // document.querySelector("#checkingMessage").value = "Nice";
+                // window.alert(messages);
+                // // console.log("This is working");
+
+                // document.querySelector("#checker").innerHTML = messages[1];
+                sendMessage(messages);
             };
 
             const data = new FormData();
             data.append('channel', channelName);
             request.send(data);
+
+            return false;
         };
     });
-    // document.querySelector(".messaging-channel").onclick = () => {
-    //     const channelName = document.querySelector("#channel").innerHTML;
-    //     var request = new XMLHttpRequest();
-    //     request.open("POST", "/channel");
-    //     window.alert(`${channelName}`);
 
-    //     const data = new FormData();
-    //     data.append('channel', channelName);
-    //     request.send(data);
 
-    //     document.querySelector("#checker").innerHTML = channelName;
+    function sendMessage(messages) {
+        const userSendingMessage = message_template({ "messageContent": messages[0] });
+        document.querySelector("#checker").innerHTML += userSendingMessage;
 
-    //     request.onload = () => {
-    //         const response = JSON.parse(request.responseText);
-    //         const messages = response.channel;
-    //         window.alert("Wroks");
-    //         console.log("This is working");
-    //     };
-    // };
-
+    }
 });
