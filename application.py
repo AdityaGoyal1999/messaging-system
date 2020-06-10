@@ -56,3 +56,10 @@ def channel():
     channel_name = request.form.get("channel")
     print(f"{channels[channel_name]}\n\n")
     return jsonify({"channel": ["Lorem af;kjfa;ksdl a;fjal; ajksd;lfjha sfdhakj fjdkshf s fkdhfor firalhdfjkh akldjhflksf;jl;jas;dlkfja;ldkfja;lsfj f f f f f f f f  f f f f ff f  ff  f ahjfdljahfdjsdhfkjsf sdhfk", "Ipsum", "Yadi-yadi-yada"]})
+
+
+@socketio.on("send message")
+def send_message(data):
+    print("Writing\n\n")
+    selection = data["selection"]
+    emit("announce message", {"selection": selection}, broadcast=True)
