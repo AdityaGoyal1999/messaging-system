@@ -42,10 +42,16 @@ body {
 }
 
 // Added from a project
-.mytext {
+.mytextSend {
     border: 0;
     padding: 10px;
     background: whitesmoke;
+}
+
+.mytextReceive {
+    border: 0;
+    padding: 10px;
+    background: white;
 }
 
 .text {
@@ -62,6 +68,11 @@ body {
 .msj-rta {
     float: right;
     background: whitesmoke;
+}
+
+.msj {
+    float: left;
+    background: white;
 }
 
 .macro {

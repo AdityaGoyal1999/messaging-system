@@ -8,7 +8,16 @@
     <div class="msj-rta macro">
         <div class="text text-r" style="background:whitesmoke !important">
             {% raw -%}
-            <input class="mytext" id="checkingMessage" value="{{ messageContent }}" disabled/> {%- endraw %}
+            <input class="mytextSend" id="checkingMessage" value="{{ messageContent }}" disabled/> {%- endraw %}
+        </div>
+    </div>
+</script>
+
+<script type="text/x-handlebars-template" id="receivingMessage">
+    <div class="msj macro">
+        <div class="text text-r" style="background:white !important">
+            {% raw -%}
+            <input class="mytextReceive" id="checkingMessage" value="{{ messageContent }}" disabled/> {%- endraw %}
         </div>
     </div>
 </script>

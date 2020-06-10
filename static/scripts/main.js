@@ -1,4 +1,5 @@
-const message_template = Handlebars.compile(document.querySelector("#sendingMessage").innerHTML);
+const message_template_send = Handlebars.compile(document.querySelector("#sendingMessage").innerHTML);
+const message_template_receive = Handlebars.compile(document.querySelector("#receivingMessage").innerHTML);
 
 document.addEventListener("DOMContentLoaded", () => {
     // document.querySelector("#checkingMessage").value = "Nice";
@@ -36,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     function sendMessage(messages) {
-        const userSendingMessage = message_template({ "messageContent": messages[0] });
+        const userSendingMessage = message_template_receive({ "messageContent": messages[0] });
         document.querySelector("#messageBox").innerHTML += userSendingMessage;
 
     }

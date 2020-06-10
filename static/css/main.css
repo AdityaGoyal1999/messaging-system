@@ -32,10 +32,15 @@ body {
   z-index: 1;
   padding: 10px; }
 
-.mytext {
+.mytextSend {
   border: 0;
   padding: 10px;
   background: whitesmoke; }
+
+.mytextReceive {
+  border: 0;
+  padding: 10px;
+  background: white; }
 
 .text {
   width: 75%;
@@ -49,6 +54,10 @@ body {
 .msj-rta {
   float: right;
   background: whitesmoke; }
+
+.msj {
+  float: left;
+  background: white; }
 
 .macro {
   margin-top: 5px;
