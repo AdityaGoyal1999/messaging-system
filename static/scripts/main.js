@@ -49,14 +49,22 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        // const userSendingMessage = message_template_send({ "messageContent": messages[0], "user": "Adi" });
-        // document.querySelector("#messages").innerHTML += userSendingMessage;
-        // socket.emit("send message", { "selection": messages[1] });
+
     }
 
+    document.querySelector("#send-button").onclick = () => {
+        // window.alert("Trying to send message");
+        const userSendingMessage = message_template_send({ "messageContent": document.querySelector("#message").value, "user": localStorage.getItem('username') });
+        document.querySelector("#messages").innerHTML += userSendingMessage;
+        socket.emit("send message", { "selection": document.querySelector("#message").value });
+
+        return false;
+    }
+
+    // TODO: fix the information in this
     // When a new vote is announced, add to the unordered list
     socket.on("announce message", data => {
-        const userReceivingMessage = message_template_receive({ "messageContent": messages[0], "user": "Adi" });
+        const userReceivingMessage = message_template_receive({ "messageContent": data.selection, "user": data.user });
         document.querySelector("#messages").innerHTML += userReceivingMessage;
     });
 });

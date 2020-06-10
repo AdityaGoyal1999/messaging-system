@@ -63,4 +63,4 @@ def send_message(data):
     print("Writing\n\n")
     print(data)
     selection = data["selection"]
-    emit("announce message", {"selection": selection}, broadcast=True)
+    emit("announce message", {"selection": selection, "user": "Someone"}, broadcast=True)

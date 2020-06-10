@@ -79,7 +79,8 @@
                     <div id="messages"></div>
                 </div>
                 <div id="sendMessage" class="fixed-bottom">
-                    <form action="{{ url_for('message') }}" method="POST">
+                    <!-- <form action="{{ url_for('message') }}" method="POST"> -->
+                    <form>
                         <div class="row">
                             <div class="col-sm-11">
                                 <div class="form-group">
@@ -87,7 +88,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-1">
-                                <button type="submit" class="btn btn-primary">Send</button>
+                                <button type="submit" class="btn btn-primary" id="send-button">Send</button>
                             </div>
                         </div>
                     </form>
