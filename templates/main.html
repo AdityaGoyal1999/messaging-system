@@ -57,15 +57,13 @@
         </div>
         <div class="col-sm-9">
             <div id="messageBox">
-                This will have the messages
+                <h2 id="messageHeading"></h2>
                 <!-- Message box -->
                 <!-- <div class="msj-rta macro">
                     <div class="text text-r" style="background:whitesmoke !important">
                         <input class="mytext" id="checkingMessage" disabled/>
                     </div>
                 </div> -->
-
-                <div id="checker"></div>
 
                 <div id="sendMessage" class="fixed-bottom">
                     <form action="{{ url_for('message') }}" method="POST">

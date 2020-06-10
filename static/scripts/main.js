@@ -9,6 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
         link.onclick = () => {
             // window.alert("link clicked");
             const channelName = link.innerHTML;
+
+            document.querySelector("#messageHeading").innerHTML = channelName;
+
             var request = new XMLHttpRequest();
             request.open("POST", "/channel");
 
@@ -34,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function sendMessage(messages) {
         const userSendingMessage = message_template({ "messageContent": messages[0] });
-        document.querySelector("#checker").innerHTML += userSendingMessage;
+        document.querySelector("#messageBox").innerHTML += userSendingMessage;
 
     }
 });
