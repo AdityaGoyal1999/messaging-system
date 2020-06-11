@@ -11,9 +11,9 @@
 
 <script type="text/x-handlebars-template" id="sendingMessage">
     <div class="msj-rta macro">
-        <div class="text text-r" style="background:whitesmoke !important">
+        <div class="text text-r" style="background:#5af080 !important">
             {% raw -%}
-            <h6>{{user}}</h6>
+            <h6 id="senderName">{{user}}</h6>
             <!-- TODO: Change input to <p> -->
             <p class="mytextSend" id="sendingMessageText">{{ messageContent }}</p> {%- endraw %}
         </div>
@@ -22,9 +22,9 @@
 
 <script type="text/x-handlebars-template" id="receivingMessage">
     <div class="msj macro">
-        <div class="text text-r" style="background:white !important">
+        <div class="text text-r" style="background:whitesmoke !important">
             {% raw -%}
-            <h6>{{user}}</h6>
+            <h6 id="receiverName">{{user}}</h6>
             <p class="mytextReceive" id="receivingMessageText">{{ messageContent }}</p> {%- endraw %}
         </div>
     </div>
