@@ -31,15 +31,11 @@
 </script>
 
 <script type="text/x-handlebars-template" id="channelLinks">
-    <!-- <div class="my-custom-scrollbar scrollbar scrollbar-lady-lips"> -->
-    <!-- <ul class="nav flex-column">
-            {% for channel in channels %} -->
     {% raw -%}
     <div class="links">
         <li class="nav-item"><a href="" id="{{channel}}" class="messaging-channel channelLinks">{{ channel }}</a></li>
     </div>
     {%- endraw %}
-    <!-- {% endfor %} -->
     </ul>
     </div>
 </script>
@@ -65,15 +61,10 @@
                 <h2 style="color: rgb(228, 199, 163); text-align: center;">Channels</h2>
                 <div class="my-custom-scrollbar scrollbar scrollbar-lady-lips">
                     <ul class="nav add-channels flex-column">
-                        <!-- {% for channel in channels %}
-                        <div class="links">
-                            <li class="nav-item"><a href="" id="{{channel}}" class="messaging-channel channelLinks">{{ channel }}</a></li>
-                        </div>
-                        {% endfor %} -->
+                        <!--  -->
                     </ul>
                 </div>
                 <div id="createChannel" class="fixed-bottom">
-                    <!-- <form action="{{ url_for('channel') }}" method="POST"> -->
                     <form>
                         <div class="row no-gutters">
                             <div class="col-sm-9">
