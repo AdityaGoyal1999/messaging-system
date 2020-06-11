@@ -61,4 +61,4 @@ def channel():
 def send_message(data):
     selection = data["selection"]
     channels[data["channel"]].append((selection, data["user"]))
-    emit("announce message", {"selection": selection, "user": "Someone"}, broadcast=True)
+    emit("announce message", {"selection": selection, "user": data["user"]}, broadcast=True)

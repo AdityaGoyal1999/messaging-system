@@ -76,7 +76,9 @@
             <div id="messageBox">
                 <h2 id="messageHeading"></h2>
                 <div class="my-custom-scrollbar scrollbar scrollbar-lady-lips">
-                    <div id="messages"></div>
+                    <div id="messages">
+                    </div>
+                    <div id="ErrorInput">Join a channel to start communication.</div>
                 </div>
                 <div id="sendMessage" class="fixed-bottom">
                     <!-- <form action="{{ url_for('message') }}" method="POST"> -->
@@ -84,11 +86,11 @@
                         <div class="row">
                             <div class="col-sm-11">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="message" placeholder="Enter message" name="message">
+                                    <input type="text" class="form-control" id="message" placeholder="Enter message" name="message" disabled>
                                 </div>
                             </div>
                             <div class="col-sm-1">
-                                <button type="submit" class="btn btn-primary" id="send-button">Send</button>
+                                <button type="submit" class="btn btn-primary" id="send-button" disabled>Send</button>
                             </div>
                         </div>
                     </form>

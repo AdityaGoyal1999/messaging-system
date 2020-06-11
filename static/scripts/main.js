@@ -18,6 +18,9 @@ document.addEventListener("DOMContentLoaded", () => {
             link.onclick = () => {
                 // clean up the page
                 document.querySelector("#messages").innerHTML = "";
+                document.querySelector("#message").disabled = false;
+                document.querySelector("#send-button").disabled = false;
+                document.querySelector("#ErrorInput").innerHTML = "";
 
                 channelName = link.innerHTML;
 
@@ -73,6 +76,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // When a new vote is announced, add to the unordered list
     socket.on("announce message", data => {
         const userReceivingMessage = message_template_receive({ "messageContent": data.selection, "user": data.user });
-        document.querySelector("#messages").innerHTML += userReceivingMessage;
+        if (!(data.user === localStorage.getItem('username'))) {
+            document.querySelector("#messages").innerHTML += userReceivingMessage;
+        }
     });
 });
