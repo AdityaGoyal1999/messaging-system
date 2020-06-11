@@ -14,9 +14,9 @@
         <div class="text text-r" style="background:#5af080 !important">
             {% raw -%}
             <h6 id="senderName">{{user}}</h6>
-            <!-- TODO: Change input to <p> -->
             <p class="mytextSend" id="sendingMessageText">{{ messageContent }}</p> {%- endraw %}
         </div>
+        <small><span class="time">12:00</span></small>
     </div>
 </script>
 
@@ -27,6 +27,7 @@
             <h6 id="receiverName">{{user}}</h6>
             <p class="mytextReceive" id="receivingMessageText">{{ messageContent }}</p> {%- endraw %}
         </div>
+        <small><span class="time">12:00</span></small>
     </div>
 </script>
 

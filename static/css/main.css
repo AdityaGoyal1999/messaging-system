@@ -89,7 +89,8 @@ body {
   padding: 10px;
   display: flex;
   box-shadow: 5px 5px gray;
-  margin: 5px; }
+  margin: 5px;
+  position: relative; }
 
 .links {
   margin-left: 10px; }
@@ -100,5 +101,11 @@ body {
 .channelLinks:hover {
   color: white;
   text-shadow: 2px 2px gray; }
+
+.time {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-right: 20px; }
 
 /*# sourceMappingURL=main.css.map */
