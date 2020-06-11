@@ -1,13 +1,26 @@
 const message_template_send = Handlebars.compile(document.querySelector("#sendingMessage").innerHTML);
 const message_template_receive = Handlebars.compile(document.querySelector("#receivingMessage").innerHTML);
+const channelShowLink = Handlebars.compile(document.querySelector("#channelShowLink").innerHTML);
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    loadChannels();
     // Connect to websocket
     // window.alert(document.querySelector("#username-data").name);
     localStorage.setItem("username", document.querySelector("#username-data").name);
 
     var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
+
+    function loadChannels() {
+
+        const request = new XMLHttpRequest();
+        request.open("POST", "/channels");
+        request.onload = () => {
+            const response = JSON.parse(request.responseText);
+            response.channelsNames.forEach()
+        }
+        request.send();
+    }
 
     // Not to be pressed when not on any channel
     var channelName = '';

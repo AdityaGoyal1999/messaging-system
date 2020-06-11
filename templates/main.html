@@ -30,6 +30,14 @@
     </div>
 </script>
 
+<script type="text/x-handlebars-template" id="channelShowLink">
+    {% raw -%}
+    <div class="links">
+        <li class="nav-item"><a href="" id="{{ channel }}" class="messaging-channel channelLinks">{{ channel }}</a></li>
+    </div>
+    {%- endraw %}
+</script>
+
 <script>
     var myCustomScrollbar = document.querySelector('.my-custom-scrollbar');
     var ps = new PerfectScrollbar(myCustomScrollbar);
@@ -51,11 +59,9 @@
                 <h2 style="color: rgb(228, 199, 163); text-align: center;">Channels</h2>
                 <div class="my-custom-scrollbar scrollbar scrollbar-lady-lips">
                     <ul class="nav flex-column">
-                        {% for channel in channels %}
-                        <div class="links">
-                            <li class="nav-item"><a href="" id="{{channel}}" class="messaging-channel channelLinks">{{ channel }}</a></li>
-                        </div>
-                        {% endfor %}
+                        <!-- {% for channel in channels %} -->
+
+                        <!-- {% endfor %} -->
                     </ul>
                 </div>
                 <div id="createChannel" class="fixed-bottom">

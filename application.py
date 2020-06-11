@@ -27,7 +27,7 @@ def login():
             channels[f"Channel #{i}"] = []
 
     # print(channels)
-    return render_template("main.html", channels=channel_names, username=username)
+    return render_template("main.html", username=username)
 
 
 @app.route("/message", methods=["POST"])
@@ -55,6 +55,11 @@ def create_channel():
 def channel():
     channel_name = request.form.get("channel")
     return jsonify({"channel": channels[channel_name]})
+
+
+@app.route("/channels", methods=["POST", "GET"])
+def show_channels():
+    return jsonify({"channelsNames": channel_names})
 
 
 @socketio.on("send message")
