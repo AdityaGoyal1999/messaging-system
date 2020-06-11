@@ -76,11 +76,11 @@ document.addEventListener("DOMContentLoaded", () => {
     function sendMessage(messages) {
         for (let i = 0; i < messages.length; i++) {
             if (localStorage.getItem('username') === messages[i][1]) {
-                var userSendingMessage = message_template_send({ "messageContent": messages[i][0], "user": messages[i][1] });
+                var userSendingMessage = message_template_send({ "messageContent": messages[i][0], "user": messages[i][1], "time": messages[i][2] });
                 document.querySelector("#messages").innerHTML += userSendingMessage;
                 // socket.emit("")
             } else {
-                var userReceivingMessage = message_template_receive({ "messageContent": messages[i][0], "user": messages[i][1] });
+                var userReceivingMessage = message_template_receive({ "messageContent": messages[i][0], "user": messages[i][1], "time": messages[i][2] });
                 document.querySelector("#messages").innerHTML += userReceivingMessage;
             }
         }
@@ -93,21 +93,22 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     document.querySelector("#send-button").onclick = () => {
+        var today = new Date();
+        var time = today.getHours().toString() + ":" + today.getMinutes().toString();
+        console.log(time)
         const messageInput = document.querySelector("#message").value;
-        const userSendingMessage = message_template_send({ "messageContent": messageInput, "user": localStorage.getItem('username') });
+        const userSendingMessage = message_template_send({ "messageContent": messageInput, "user": localStorage.getItem('username'), "time": time });
         // Clear up the enter field
         document.querySelector("#message").value = '';
         document.querySelector("#messages").innerHTML += userSendingMessage;
         // Send information for the serve to use
-        socket.emit("send message", { "selection": messageInput, "channel": channelName, "user": localStorage.getItem('username') });
+        socket.emit("send message", { "selection": messageInput, "channel": channelName, "user": localStorage.getItem('username'), "time": time });
 
         return false;
     }
 
-    // TODO: fix the information in this
-    // When a new vote is announced, add to the unordered list
     socket.on("announce message", data => {
-        const userReceivingMessage = message_template_receive({ "messageContent": data.selection, "user": data.user });
+        const userReceivingMessage = message_template_receive({ "messageContent": data.selection, "user": data.user, "time": data.time });
         if (!(data.user === localStorage.getItem('username'))) {
             document.querySelector("#messages").innerHTML += userReceivingMessage;
         }

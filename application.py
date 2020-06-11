@@ -71,5 +71,5 @@ def channel():
 @socketio.on("send message")
 def send_message(data):
     selection = data["selection"]
-    channels[data["channel"]].append((selection, data["user"]))
-    emit("announce message", {"selection": selection, "user": data["user"]}, broadcast=True)
+    channels[data["channel"]].append((selection, data["user"], data["time"]))
+    emit("announce message", {"selection": selection, "user": data["user"], "time": data["time"]}, broadcast=True)
