@@ -2,4 +2,14 @@
   background-color: cornsilk;
   padding: 30px; }
 
+h1 {
+  text-align: center; }
+
+.bg-custom-color {
+  background-color: #e4c7a3 !important;
+  color: black !important; }
+
+.navbar-brand {
+  font-weight: bold; }
+
 /*# sourceMappingURL=base.css.map */

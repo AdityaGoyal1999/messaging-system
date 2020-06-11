@@ -94,10 +94,10 @@ body {
 .links {
   margin-left: 10px; }
 
-a {
+.channelLinks {
   color: #e4c7a3; }
 
-a:hover {
+.channelLinks:hover {
   color: white;
   text-shadow: 2px 2px gray; }
 
