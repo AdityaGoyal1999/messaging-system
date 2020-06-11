@@ -10,6 +10,12 @@ body {
   bottom: 0;
   left: 0; }
 
+.message-scrollbar {
+  background-color: #f3e1c9; }
+
+#messageHeading {
+  border-bottom-style: solid; }
+
 #messageBox {
   background-color: #f3e1c9;
   width: 100%;
@@ -31,7 +37,12 @@ body {
   height: 70vh;
   overflow: auto; }
 
-#sendMessage,
+#sendMessage {
+  position: absolute;
+  z-index: 1;
+  padding: 10px;
+  background-color: #e4c7a3; }
+
 #createChannel {
   position: absolute;
   z-index: 1;
