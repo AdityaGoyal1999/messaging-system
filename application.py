@@ -21,10 +21,13 @@ def login():
     username = request.form.get("username")
     password = request.form.get('password')
 
-    for i in range(1, 31):
-        if f"Channel #{i}" not in channel_names:
-            channel_names.append(f"Channel #{i}")
-            channels[f"Channel #{i}"] = []
+    print(isinstance(channels, dict), "\n\n")
+    # for i in range(1, 31):
+    #     name = "Channel #"+str(i)
+    #     if name not in channel_names:
+            
+    #         channel_names.append(name)
+    #         channels[name] = []
 
     # print(channels)
     return render_template("main.html", channels=channel_names, username=username)
@@ -50,6 +53,11 @@ def create_channel():
         return render_template("main.html", channels=channel_names)
     else:
         return "Wait"
+
+@app.route("/channels", methods=["POST"])
+def channels():
+    print("Working\n\n")
+    return jsonify({"channels": channel_names})
 
 @app.route("/channel", methods=["POST", "GET"])
 def channel():

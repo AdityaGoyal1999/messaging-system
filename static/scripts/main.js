@@ -1,5 +1,6 @@
 const message_template_send = Handlebars.compile(document.querySelector("#sendingMessage").innerHTML);
 const message_template_receive = Handlebars.compile(document.querySelector("#receivingMessage").innerHTML);
+const channelLink = Handlebars.compile(document.querySelector("#channelLinks").innerHTML);
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -9,8 +10,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
 
-    // Not to be pressed when not on any channel
     var channelName = '';
+
+    // Get channel list
+    var channelRequest = new XMLHttpRequest();
+    channelRequest.open("POST", "/channels");
+    channelRequest.send();
+    channelRequest.onload = () => {
+        var channelResponse = JSON.parse(channelRequest.responseText);
+        var allChannels = channelResponse.channels;
+        allChannels.forEach(createChannel);
+    };
+    // var channelDataSend = new FormData();
+
+    function createChannel(name) {
+        const createdLink = channelLink({ "channel": name });
+        document.querySelector(".add-channels").innerHTML += createdLink;
+    }
 
     socket.on('connect', () => {
 
