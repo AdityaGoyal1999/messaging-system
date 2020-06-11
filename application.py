@@ -54,7 +54,12 @@ def create_channel():
 
 @app.route("/channels", methods=["POST"])
 def show_channels():
-    print("Working\n\n")
+    new_name = request.form.get('newName')
+    print(new_name, "\n\n")
+    # TODO: check if channel is unique
+    if(new_name != ''):
+        channel_names.append(new_name)
+        channels[new_name] = []
     return jsonify({"channels": channel_names})
 
 @app.route("/channel", methods=["POST", "GET"])

@@ -4,9 +4,7 @@ const channelLink = Handlebars.compile(document.querySelector("#channelLinks").i
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    // Connect to websocket
-    // window.alert(document.querySelector("#username-data").name);
-    load_channels();
+    load_channels("");
 
     // if (localStorage.getItem('username') !== document.querySelector("#username-data").name && !("username" in localStorage) && !(document.querySelector("#username-data").name === null)) {
     localStorage.setItem("username", document.querySelector("#username-data").name);
@@ -17,17 +15,22 @@ document.addEventListener("DOMContentLoaded", () => {
     var channelName = '';
 
     // Get channel list
-    function load_channels() {
+    function load_channels(newName) {
+        document.querySelector(".add-channels").innerHTML = "";
+
         var channelRequest = new XMLHttpRequest();
         channelRequest.open("POST", "/channels");
-        channelRequest.send();
+
         channelRequest.onload = () => {
             var channelResponse = JSON.parse(channelRequest.responseText);
             var allChannels = channelResponse.channels;
             allChannels.forEach(createChannel);
         };
+        var channelDataSend = new FormData();
+        channelDataSend.append('newName', newName);
+        channelRequest.send(channelDataSend);
     }
-    // var channelDataSend = new FormData();
+
 
     function createChannel(name) {
         const createdLink = channelLink({ "channel": name });
@@ -80,8 +83,13 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-
     }
+
+    document.querySelector("#button-create-channel").onclick = () => {
+        const newChannelName = document.querySelector("#createNewChannelName").value;
+        window.alert(newChannelName)
+        load_channels(newChannelName);
+    };
 
     document.querySelector("#send-button").onclick = () => {
         const messageInput = document.querySelector("#message").value;
