@@ -9,12 +9,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
 
+    // Not to be pressed when not on any channel
+    var channelName = '';
+
     socket.on('connect', () => {
 
         document.querySelectorAll(".messaging-channel").forEach(link => {
             link.onclick = () => {
-                // window.alert("link clicked");
-                const channelName = link.innerHTML;
+                // clean up the page
+                document.querySelector("#messages").innerHTML = "";
+
+                channelName = link.innerHTML;
 
                 document.querySelector("#messageHeading").innerHTML = channelName;
 
@@ -36,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-
+    // Show the saved messages in the database
     function sendMessage(messages) {
         for (let i = 0; i < messages.length; i++) {
             if (localStorage.getItem('username') === messages[i][1]) {
@@ -53,10 +58,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     document.querySelector("#send-button").onclick = () => {
-        // window.alert("Trying to send message");
-        const userSendingMessage = message_template_send({ "messageContent": document.querySelector("#message").value, "user": localStorage.getItem('username') });
+        const messageInput = document.querySelector("#message").value;
+        const userSendingMessage = message_template_send({ "messageContent": messageInput, "user": localStorage.getItem('username') });
+        // Clear up the enter field
+        document.querySelector("#message").value = '';
         document.querySelector("#messages").innerHTML += userSendingMessage;
-        socket.emit("send message", { "selection": document.querySelector("#message").value });
+        // Send information for the serve to use
+        socket.emit("send message", { "selection": messageInput, "channel": channelName, "user": localStorage.getItem('username') });
 
         return false;
     }

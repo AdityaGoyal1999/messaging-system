@@ -54,13 +54,11 @@ def create_channel():
 @app.route("/channel", methods=["POST", "GET"])
 def channel():
     channel_name = request.form.get("channel")
-    print(f"{channels[channel_name]}\n\n")
-    return jsonify({"channel": [("Lorem af;kjfa;ksdl a;fjal; ajksd;lfjha sfdhakj fjdkshf s fkdhfor firalhdfjkh akldjhflksf;jl;jas;dlkfja;ldkfja;lsfj f f f f f f f f  f f f f ff f  ff  f ahjfdljahfdjsdhfkjsf sdhfk", 'Adi'), ("Ipsum", "Cool"), ("Yadi-yadi-yada", "John")]})
+    return jsonify({"channel": channels[channel_name]})
 
 
 @socketio.on("send message")
 def send_message(data):
-    print("Writing\n\n")
-    print(data)
     selection = data["selection"]
+    channels[data["channel"]].append((selection, data["user"]))
     emit("announce message", {"selection": selection, "user": "Someone"}, broadcast=True)
