@@ -21,14 +21,14 @@ def login():
     username = request.form.get("username")
     password = request.form.get('password')
 
-    for i in range(1, 31):
-        name = "Channel #"+str(i)
-        if name not in channel_names:
+    # for i in range(1, 31):
+    #     name = "Channel #"+str(i)
+    #     if name not in channel_names:
             
-            channel_names.append(name)
-            channels[name] = [("Hello", 'Adi'), ("Hi!", "goadi")]
+    #         channel_names.append(name)
+    #         channels[name] = [("Hello", 'Adi'), ("Hi!", "goadi")]
 
-    return render_template("main.html", channels=channel_names, username=username)
+    return render_template("main.html", username=username)
 
 
 @app.route("/message", methods=["POST"])

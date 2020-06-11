@@ -6,9 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     load_channels("");
 
-    // if (localStorage.getItem('username') !== document.querySelector("#username-data").name && !("username" in localStorage) && !(document.querySelector("#username-data").name === null)) {
-    localStorage.setItem("username", document.querySelector("#username-data").name);
-    // }
+    if (!("username" in localStorage) && localStorage.getItem('username') !== document.querySelector("#username-data").name && !(document.querySelector("#username-data").name === null)) {
+        localStorage.setItem("username", document.querySelector("#username-data").name);
+    }
 
     var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
 
@@ -29,6 +29,8 @@ document.addEventListener("DOMContentLoaded", () => {
         var channelDataSend = new FormData();
         channelDataSend.append('newName', newName);
         channelRequest.send(channelDataSend);
+
+        return false;
     }
 
 
@@ -87,7 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelector("#button-create-channel").onclick = () => {
         const newChannelName = document.querySelector("#createNewChannelName").value;
-        window.alert(newChannelName)
         load_channels(newChannelName);
     };
 
