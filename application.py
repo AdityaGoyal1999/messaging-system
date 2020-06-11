@@ -26,9 +26,8 @@ def login():
         if name not in channel_names:
             
             channel_names.append(name)
-            channels[name] = []
+            channels[name] = [("Hello", 'Adi'), ("Hi!", "goadi")]
 
-    # print(channels)
     return render_template("main.html", channels=channel_names, username=username)
 
 

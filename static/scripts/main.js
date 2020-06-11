@@ -6,27 +6,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Connect to websocket
     // window.alert(document.querySelector("#username-data").name);
+    load_channels();
+
+    // if (localStorage.getItem('username') !== document.querySelector("#username-data").name && !("username" in localStorage) && !(document.querySelector("#username-data").name === null)) {
     localStorage.setItem("username", document.querySelector("#username-data").name);
+    // }
 
     var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
 
     var channelName = '';
 
     // Get channel list
-    var channelRequest = new XMLHttpRequest();
-    channelRequest.open("POST", "/channels");
-    channelRequest.send();
-    channelRequest.onload = () => {
-        var channelResponse = JSON.parse(channelRequest.responseText);
-        var allChannels = channelResponse.channels;
-        allChannels.forEach(createChannel);
-    };
+    function load_channels() {
+        var channelRequest = new XMLHttpRequest();
+        channelRequest.open("POST", "/channels");
+        channelRequest.send();
+        channelRequest.onload = () => {
+            var channelResponse = JSON.parse(channelRequest.responseText);
+            var allChannels = channelResponse.channels;
+            allChannels.forEach(createChannel);
+        };
+    }
     // var channelDataSend = new FormData();
 
     function createChannel(name) {
         const createdLink = channelLink({ "channel": name });
         document.querySelector(".add-channels").innerHTML += createdLink;
     }
+
 
     socket.on('connect', () => {
 
