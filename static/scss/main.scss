@@ -129,6 +129,15 @@ body {
     margin: 5px;
 }
 
-.nav-item {
-    text-align: center;
+.links {
+    margin-left: 10px;
+}
+
+a {
+    color: rgb(228, 199, 163);
+}
+
+a:hover {
+    color: white;
+    text-shadow: 2px 2px gray;
 }

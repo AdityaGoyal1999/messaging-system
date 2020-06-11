@@ -91,7 +91,14 @@ body {
   box-shadow: 5px 5px gray;
   margin: 5px; }
 
-.nav-item {
-  text-align: center; }
+.links {
+  margin-left: 10px; }
+
+a {
+  color: #e4c7a3; }
+
+a:hover {
+  color: white;
+  text-shadow: 2px 2px gray; }
 
 /*# sourceMappingURL=main.css.map */
