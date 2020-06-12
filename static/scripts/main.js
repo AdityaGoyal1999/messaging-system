@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     load_channels("");
 
+    var allChannelNames;
+
     if (!("username" in localStorage)) {
         var val = window.prompt("Enter you unique name");
         window.alert("Name is " + val);
@@ -25,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         channelRequest.onload = () => {
             var channelResponse = JSON.parse(channelRequest.responseText);
             var allChannels = channelResponse.channels;
+            allChannelNames = allChannels;
             allChannels.forEach(createChannel);
         };
         var channelDataSend = new FormData();
@@ -79,7 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if (localStorage.getItem('username') === messages[i][1]) {
                 var userSendingMessage = message_template_send({ "messageContent": messages[i][0], "user": messages[i][1], "time": messages[i][2] });
                 document.querySelector("#messages").innerHTML += userSendingMessage;
-                // socket.emit("")
             } else {
                 var userReceivingMessage = message_template_receive({ "messageContent": messages[i][0], "user": messages[i][1], "time": messages[i][2] });
                 document.querySelector("#messages").innerHTML += userReceivingMessage;
@@ -90,7 +92,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelector("#button-create-channel").onclick = () => {
         const newChannelName = document.querySelector("#createNewChannelName").value;
-        load_channels(newChannelName);
+        if (allChannelNames.includes(newChannelName)) {
+            window.alert("This channel name already exists");
+        } else {
+            load_channels(newChannelName);
+        }
     };
 
     document.querySelector("#send-button").onclick = () => {
