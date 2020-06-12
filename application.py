@@ -62,3 +62,13 @@ def create_new_channel(data):
     channels[selection] = []
     channel_names.append(selection)
     emit("create new channel", {"channelName": selection}, broadcast=True)
+
+@socketio.on("delete sender message")
+def create_new_channel(data):
+    # selection = data["channelName"]
+    # channels[selection] = []
+    # channel_names.append(selection)
+    # print("Cool")
+    deleting_value = (data["text"], data["name"], data["time"])
+    # print(deleting_value in channels[data["channel"]])
+    channels[data["channel"]].remove(deleting_value)

@@ -1,3 +1,60 @@
+@keyframes hide {
+    0% {
+        opacity: 1;
+        height: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin: 5px;
+    }
+    75% {
+        opacity: 0;
+        height: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin: 5px;
+    }
+    100% {
+        opacity: 0;
+        height: 0px;
+        padding: 0px;
+        margin-bottom: 0px;
+        margin: 0px;
+    }
+}
+
+@keyframes hide-text {
+    0% {
+        height: 100%;
+    }
+    75% {
+        height: 100%
+    }
+    100% {
+        height: 0%;
+    }
+}
+
+.text {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+.macro {
+    margin-top: 5px;
+    width: 65%;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    box-shadow: 5px 5px gray;
+    margin: 5px;
+    position: relative;
+    animation-name: hide;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+}
+
 body {
     position: relative;
 }
@@ -97,15 +154,13 @@ body {
     background: whitesmoke;
 }
 
-.text {
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-}
-
 .text-r {
     float: right;
     padding-left: 10px;
+    animation-name: hide-text;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
 }
 
 .msj-rta {
@@ -117,17 +172,6 @@ body {
 .msj {
     float: left;
     background: whitesmoke;
-}
-
-.macro {
-    margin-top: 5px;
-    width: 65%;
-    border-radius: 5px;
-    padding: 10px;
-    display: flex;
-    box-shadow: 5px 5px gray;
-    margin: 5px;
-    position: relative;
 }
 
 .links {
@@ -148,4 +192,12 @@ body {
     bottom: 0;
     right: 0;
     margin-right: 20px;
+}
+
+.delete {
+    height: 20px;
+    width: 50px;
+    font-size: 10px;
+    background-color: #7eff9e;
+    border-radius: 10px;
 }

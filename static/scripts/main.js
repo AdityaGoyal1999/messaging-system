@@ -36,6 +36,27 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
+    document.addEventListener('click', event => {
+        const element = event.target;
+        if (element.className === 'delete') {
+            element.parentElement.querySelector("div").style.animationPlayState = 'running';
+            element.parentElement.style.animationPlayState = 'running';
+            element.parentElement.addEventListener('animationend', () => {
+                // Now do the processing at the end
+                delete_message(element.parentElement);
+                element.parentElement.remove();
+            });
+        }
+    });
+
+    function delete_message(element) {
+        const name = element.querySelector("#senderName").innerHTML;
+        const text = element.querySelector("#sendingMessageText").innerHTML;
+        const time = element.querySelector("#time").innerHTML;
+        socket.emit("delete sender message", { "name": name, "text": text, "time": time, "channel": channelName });
+    }
+
+
     // Get channel list
     function load_channels(newName) {
         document.querySelector(".add-channels").innerHTML = "";
