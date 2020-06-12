@@ -12,9 +12,11 @@ Download the dependencies<br>
 pip install -r requirements.txt
 ```
 
-<h3>Running app<h3>
+<h3>Running app</h3>
 
 ```
 export FLASK_APP=application.py
 flask run
 ```
+
+<h3>Information on Project</h3>
