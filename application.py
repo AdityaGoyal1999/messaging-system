@@ -12,22 +12,21 @@ channel_names = []
 
 @app.route("/")
 def index():
-    return render_template("index.html", title="Welcome")
+    return render_template("main.html")
 
 
-@app.route("/login", methods=["POST", "GET"])
-def login():
+# @app.route("/login", methods=["POST", "GET"])
+# def login():
 
-    username = request.form.get("username")
+#     username = request.form.get("username")
 
-    return render_template("main.html", username=username)
+#     return render_template("main.html", username=username)
 
 
 @app.route("/message", methods=["POST"])
 def message():
 
     message = request.form.get('message')
-
     return message
 
 
@@ -38,8 +37,6 @@ def create_channel():
     if(new_channel not in channel_names):
         channel_names.append(new_channel)
         channels[new_channel] = []
-        print(channel_names)
-        # TODO: might not be the right thing to do.
         return render_template("main.html", channels=channel_names)
     else:
         return "Wait"
@@ -47,7 +44,6 @@ def create_channel():
 @app.route("/channels", methods=["POST"])
 def show_channels():
     new_name = request.form.get('newName')
-    print(new_name, "\n\n")
     # TODO: check if channel is unique
     if(new_name != ''):
         channel_names.append(new_name)
@@ -63,5 +59,7 @@ def channel():
 @socketio.on("send message")
 def send_message(data):
     selection = data["selection"]
+    if(len(channels[data["channel"]]) >= 100 ):
+        channels[data["channel"]].pop(0)
     channels[data["channel"]].append((selection, data["user"], data["time"]))
     emit("announce message", {"selection": selection, "user": data["user"], "time": data["time"], "channelName": data["channelName"]}, broadcast=True)

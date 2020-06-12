@@ -6,8 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     load_channels("");
 
-    if (!("username" in localStorage) && localStorage.getItem('username') !== document.querySelector("#username-data").name && !(document.querySelector("#username-data").name === null)) {
-        localStorage.setItem("username", document.querySelector("#username-data").name);
+    if (!("username" in localStorage)) {
+        var val = window.prompt("Enter you unique name");
+        window.alert("Name is " + val);
     }
 
     var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
@@ -112,8 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     socket.on("announce message", data => {
-        // if both are on the same channel
-        // if (channelName === data.channelName) {
 
         // TODO: fix not emitting to specific channel
         const userReceivingMessage = message_template_receive({ "messageContent": data.selection, "user": data.user, "time": data.time });
