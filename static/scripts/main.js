@@ -100,22 +100,26 @@ document.addEventListener("DOMContentLoaded", () => {
             mins = "0" + mins.toString();
         }
         var time = hours.toString() + ":" + mins.toString();
-        // console.log(time)
         const messageInput = document.querySelector("#message").value;
         const userSendingMessage = message_template_send({ "messageContent": messageInput, "user": localStorage.getItem('username'), "time": time });
         // Clear up the enter field
         document.querySelector("#message").value = '';
         document.querySelector("#messages").innerHTML += userSendingMessage;
         // Send information for the serve to use
-        socket.emit("send message", { "selection": messageInput, "channel": channelName, "user": localStorage.getItem('username'), "time": time });
+        socket.emit("send message", { "selection": messageInput, "channel": channelName, "user": localStorage.getItem('username'), "time": time, "channelName": channelName });
 
         return false;
     }
 
     socket.on("announce message", data => {
+        // if both are on the same channel
+        // if (channelName === data.channelName) {
+
+        // TODO: fix not emitting to specific channel
         const userReceivingMessage = message_template_receive({ "messageContent": data.selection, "user": data.user, "time": data.time });
         if (!(data.user === localStorage.getItem('username'))) {
             document.querySelector("#messages").innerHTML += userReceivingMessage;
         }
+        // }
     });
 });

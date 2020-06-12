@@ -19,14 +19,6 @@ def index():
 def login():
 
     username = request.form.get("username")
-    password = request.form.get('password')
-
-    # for i in range(1, 31):
-    #     name = "Channel #"+str(i)
-    #     if name not in channel_names:
-            
-    #         channel_names.append(name)
-    #         channels[name] = [("Hello", 'Adi'), ("Hi!", "goadi")]
 
     return render_template("main.html", username=username)
 
@@ -72,4 +64,4 @@ def channel():
 def send_message(data):
     selection = data["selection"]
     channels[data["channel"]].append((selection, data["user"], data["time"]))
-    emit("announce message", {"selection": selection, "user": data["user"], "time": data["time"]}, broadcast=True)
+    emit("announce message", {"selection": selection, "user": data["user"], "time": data["time"], "channelName": data["channelName"]}, broadcast=True)
