@@ -4,6 +4,10 @@ const channelLink = Handlebars.compile(document.querySelector("#channelLinks").i
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    if ("channel" in localStorage) {
+        load_all_messages(localStorage.getItem('channel'))
+    }
+
     load_channels("");
 
     var channelName = '';
@@ -12,7 +16,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!("username" in localStorage)) {
         var val = window.prompt("Enter you unique name");
-        window.alert("Name is " + val);
+        window.alert("Welcome " + val);
+        localStorage.setItem("username", val);
+    } else if (localStorage.getItem("username") == null) {
+        var val = window.prompt("Enter you unique name");
+        window.alert("Welcome " + val);
+        localStorage.setItem("username", val);
     }
 
     var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
@@ -64,33 +73,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
         document.querySelectorAll(".messaging-channel").forEach(link => {
             link.onclick = () => {
-                // clean up the page
-                document.querySelector("#messages").innerHTML = "";
-                document.querySelector("#message").disabled = false;
-                document.querySelector("#send-button").disabled = false;
-                document.querySelector("#ErrorInput").innerHTML = "";
-
-                channelName = link.innerHTML;
-
-                document.querySelector("#messageHeading").innerHTML = channelName;
-
-                var request = new XMLHttpRequest();
-                request.open("POST", "/channel");
-
-                request.onload = () => {
-                    const response = JSON.parse(request.responseText);
-                    const messages = response.channel;
-                    sendMessage(messages);
-                };
-
-                const data = new FormData();
-                data.append('channel', channelName);
-                request.send(data);
-
+                // window.alert(link.name)
+                load_all_messages(link.name);
                 return false;
             };
         });
     });
+
+    // loads the messages of the channel
+    function load_all_messages(linkname) {
+        document.querySelector("#messages").innerHTML = "";
+        document.querySelector("#message").disabled = false;
+        document.querySelector("#send-button").disabled = false;
+        document.querySelector("#ErrorInput").innerHTML = "";
+
+        channelName = linkname;
+        localStorage.setItem("channel", linkname);
+
+        document.querySelector("#messageHeading").innerHTML = channelName;
+
+        var request = new XMLHttpRequest();
+        request.open("POST", "/channel");
+
+        request.onload = () => {
+            const response = JSON.parse(request.responseText);
+            const messages = response.channel;
+            sendMessage(messages);
+        };
+
+        const data = new FormData();
+        data.append('channel', channelName);
+        request.send(data);
+
+        // return false;
+    }
 
     // Show the saved messages in the database
     function sendMessage(messages) {

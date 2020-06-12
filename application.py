@@ -15,14 +15,6 @@ def index():
     return render_template("main.html")
 
 
-# @app.route("/login", methods=["POST", "GET"])
-# def login():
-
-#     username = request.form.get("username")
-
-#     return render_template("main.html", username=username)
-
-
 @app.route("/message", methods=["POST"])
 def message():
 
