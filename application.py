@@ -63,3 +63,10 @@ def send_message(data):
         channels[data["channel"]].pop(0)
     channels[data["channel"]].append((selection, data["user"], data["time"]))
     emit("announce message", {"selection": selection, "user": data["user"], "time": data["time"], "channelName": data["channelName"]}, broadcast=True)
+
+@socketio.on("create channel")
+def create_new_channel(data):
+    selection = data["channelName"]
+    channels[selection] = []
+    channel_names.append(selection)
+    emit("create new channel", {"channelName": selection}, broadcast=True)

@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     load_channels("");
 
+    var channelName = '';
+
     var allChannelNames;
 
     if (!("username" in localStorage)) {
@@ -15,7 +17,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
 
-    var channelName = '';
+    function load_new_channel(new_channel) {
+        createChannel(new_channel)
+        socket.emit("create channel", { "channelName": new_channel });
+    }
+
+    socket.on("create new channel", data => {
+        createChannel(data.channelName);
+    });
+
 
     // Get channel list
     function load_channels(newName) {
@@ -30,6 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
             allChannelNames = allChannels;
             allChannels.forEach(createChannel);
         };
+        // TODO: Change this
         var channelDataSend = new FormData();
         channelDataSend.append('newName', newName);
         channelRequest.send(channelDataSend);
@@ -95,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (allChannelNames.includes(newChannelName)) {
             window.alert("This channel name already exists");
         } else {
-            load_channels(newChannelName);
+            load_new_channel(newChannelName);
         }
     };
 
