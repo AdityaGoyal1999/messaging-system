@@ -63,5 +63,8 @@ def channel():
 @socketio.on("send message")
 def send_message(data):
     selection = data["selection"]
+    # Channels will store no more than 100 messages
+    if(len(channels[data["channel"]]) >= 100):
+        channels[data["channel"]].pop(0)
     channels[data["channel"]].append((selection, data["user"], data["time"]))
     emit("announce message", {"selection": selection, "user": data["user"], "time": data["time"], "channelName": data["channelName"]}, broadcast=True)
