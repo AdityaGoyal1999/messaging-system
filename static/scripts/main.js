@@ -94,8 +94,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelector("#send-button").onclick = () => {
         var today = new Date();
-        var time = today.getHours().toString() + ":" + today.getMinutes().toString();
-        console.log(time)
+        var mins = today.getMinutes();
+        var hours = today.getHours();
+        if (mins <= 9) {
+            mins = "0" + mins.toString();
+        }
+        var time = hours.toString() + ":" + mins.toString();
+        // console.log(time)
         const messageInput = document.querySelector("#message").value;
         const userSendingMessage = message_template_send({ "messageContent": messageInput, "user": localStorage.getItem('username'), "time": time });
         // Clear up the enter field
