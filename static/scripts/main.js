@@ -140,12 +140,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     socket.on("announce message", data => {
 
-        // TODO: fix not emitting to specific channel
-        const userReceivingMessage = message_template_receive({ "messageContent": data.selection, "user": data.user, "time": data.time });
-        if (!(data.user === localStorage.getItem('username'))) {
-            document.querySelector("#messages").innerHTML += userReceivingMessage;
-            fixScroller();
+        if (channelName === data.channelName) {
+            const userReceivingMessage = message_template_receive({ "messageContent": data.selection, "user": data.user, "time": data.time });
+            if (!(data.user === localStorage.getItem('username'))) {
+                document.querySelector("#messages").innerHTML += userReceivingMessage;
+                fixScroller();
+            }
         }
-        // }
     });
 });
