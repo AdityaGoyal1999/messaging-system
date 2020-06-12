@@ -48,6 +48,11 @@ document.addEventListener("DOMContentLoaded", () => {
         return false;
     }
 
+    // fixes the scroller for messages
+    function fixScroller() {
+        var messageBody = document.querySelector(".message-scrollbar");
+        messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+    }
 
     function createChannel(name) {
         const createdLink = channelLink({ "channel": name });
@@ -97,6 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 var userReceivingMessage = message_template_receive({ "messageContent": messages[i][0], "user": messages[i][1], "time": messages[i][2] });
                 document.querySelector("#messages").innerHTML += userReceivingMessage;
             }
+            fixScroller();
         }
 
     }
@@ -123,6 +129,9 @@ document.addEventListener("DOMContentLoaded", () => {
         // Clear up the enter field
         document.querySelector("#message").value = '';
         document.querySelector("#messages").innerHTML += userSendingMessage;
+
+        fixScroller();
+
         // Send information for the serve to use
         socket.emit("send message", { "selection": messageInput, "channel": channelName, "user": localStorage.getItem('username'), "time": time, "channelName": channelName });
 
@@ -135,6 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const userReceivingMessage = message_template_receive({ "messageContent": data.selection, "user": data.user, "time": data.time });
         if (!(data.user === localStorage.getItem('username'))) {
             document.querySelector("#messages").innerHTML += userReceivingMessage;
+            fixScroller();
         }
         // }
     });
