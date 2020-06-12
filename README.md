@@ -20,3 +20,7 @@ flask run
 ```
 
 <h3>Information on Project</h3>
+
+<h3>Code of conduct</h3>
+Interest in contributing to the project is much appreciated and welcomed. If you would like to know more about it, contact me on my
+<a href="https://www.linkedin.com/in/adi-goyal/">LinkedIn</a>
