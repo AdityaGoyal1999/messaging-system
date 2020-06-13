@@ -2,7 +2,7 @@
 
 The project has a chat web application, Flack. It is a single page app that once logged in, doesn't requrie to be loaded again. The app remembers the person once logged in and even after the person has closed the browser. It even remembers the channel that the person was most recently on.
 
-<img src="messaging.gif" alt="Project demonstration">
+<img src="messaging.gif" width="700px" alt="Project demonstration">
 
 Use of Local Storage of browser - to keep username and last visited channel information.
 
