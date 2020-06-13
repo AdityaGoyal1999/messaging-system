@@ -32,3 +32,5 @@ Languages and frameworks used:
 - Bootstrap: Assisting with the styling of the page.
 
 Note for developers: The documentation is well commented and code repetition has been minimized.
+
+Created by Aditya Goyal
