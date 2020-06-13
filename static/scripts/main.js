@@ -1,19 +1,18 @@
+// Handlebar templates
 const message_template_send = Handlebars.compile(document.querySelector("#sendingMessage").innerHTML);
 const message_template_receive = Handlebars.compile(document.querySelector("#receivingMessage").innerHTML);
 const channelLink = Handlebars.compile(document.querySelector("#channelLinks").innerHTML);
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    // check if channel exists in local Storage
     if ("channel" in localStorage) {
-        load_all_messages(localStorage.getItem('channel'))
+        if (localStorage.getItem('channel') != null) {
+            load_all_messages(localStorage.getItem('channel'))
+        }
     }
 
-    load_channels("");
-
-    var channelName = '';
-
-    var allChannelNames;
-
+    // check if username correctly exists in local Storage
     if (!("username" in localStorage)) {
         var val = window.prompt("Enter you unique name");
         window.alert("Welcome " + val);
@@ -24,6 +23,14 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("username", val);
     }
 
+    load_channels("");
+
+    // current channel
+    var channelName = '';
+
+    var allChannelNames;
+
+    // setup socket
     var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
 
     function load_new_channel(new_channel) {
@@ -35,17 +42,16 @@ document.addEventListener("DOMContentLoaded", () => {
         createChannel(data.channelName);
     });
 
-
     document.addEventListener('click', event => {
         const element = event.target;
         if (element.className === 'delete') {
             element.parentElement.style.animationPlayState = 'running';
             element.parentElement.addEventListener('animationend', () => {
-                // Now do the processing at the end
+                // Delete from the server
                 delete_message(element.parentElement);
                 element.parentElement.remove();
             });
-        }
+        };
     });
 
     function delete_message(element) {
@@ -54,7 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const time = element.querySelector("#time").innerHTML;
         socket.emit("delete sender message", { "name": name, "text": text, "time": time, "channel": channelName });
     }
-
 
     // Get channel list
     function load_channels(newName) {
@@ -69,7 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
             allChannelNames = allChannels;
             allChannels.forEach(createChannel);
         };
-        // TODO: Change this
         var channelDataSend = new FormData();
         channelDataSend.append('newName', newName);
         channelRequest.send(channelDataSend);
@@ -90,7 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     socket.on('connect', () => {
-
         document.querySelectorAll(".messaging-channel").forEach(link => {
             link.onclick = () => {
                 // window.alert(link.name)
@@ -124,8 +127,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = new FormData();
         data.append('channel', channelName);
         request.send(data);
-
-        // return false;
     }
 
     // Show the saved messages in the database
@@ -165,7 +166,6 @@ document.addEventListener("DOMContentLoaded", () => {
         // Clear up the enter field
         document.querySelector("#message").value = '';
         document.querySelector("#messages").innerHTML += userSendingMessage;
-
         fixScroller();
 
         // Send information for the serve to use
