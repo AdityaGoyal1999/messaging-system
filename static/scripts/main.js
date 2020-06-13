@@ -39,7 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener('click', event => {
         const element = event.target;
         if (element.className === 'delete') {
-            element.parentElement.querySelector("div").style.animationPlayState = 'running';
             element.parentElement.style.animationPlayState = 'running';
             element.parentElement.addEventListener('animationend', () => {
                 // Now do the processing at the end

@@ -1,8 +1,6 @@
 <!-- This is the main maessaging page -->
 {% extends "layout.html" %} {% block title %} {{title}} {% endblock %} {% block imports %}
 
-<!-- For passing the username -->
-<!-- <meta id="username-data" name="{{username}}"> -->
 
 <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 
@@ -11,7 +9,7 @@
 
 <script type="text/x-handlebars-template" id="sendingMessage">
     {% raw -%}
-    <div class="msj-rta macro">
+    <div class="msj-right macro">
         <div class="text text-r" style="background:#5af080 !important">
             <h6 id="senderName">{{user}}</h6>
             <p class="mytextSend" id="sendingMessageText">{{ messageContent }}</p>
@@ -24,7 +22,7 @@
 
 <script type="text/x-handlebars-template" id="receivingMessage">
     {% raw -%}
-    <div class="msj macro">
+    <div class="msj-left macro">
         <div class="text text-r" style="background:whitesmoke !important">
             <h6 id="receiverName">{{user}}</h6>
             <p class="mytextReceive" id="receivingMessageText">{{ messageContent }}</p>
@@ -45,6 +43,7 @@
 </script>
 
 <script>
+    // Handle the scroller
     var myCustomScrollbar = document.querySelector('.my-custom-scrollbar');
     var ps = new PerfectScrollbar(myCustomScrollbar);
 
@@ -65,7 +64,7 @@
                 <h2 style="color: rgb(228, 199, 163); text-align: center;">Channels</h2>
                 <div class="my-custom-scrollbar scrollbar scrollbar-lady-lips">
                     <ul class="nav add-channels flex-column">
-                        <!--  -->
+                        <!-- All channels will exist here after main.js runs -->
                     </ul>
                 </div>
                 <div id="createChannel" class="fixed-bottom">
@@ -89,6 +88,7 @@
                 <h2 id="messageHeading"></h2>
                 <div class="my-custom-scrollbar message-scrollbar scrollbar scrollbar-lady-lips">
                     <div id="messages">
+                        <!-- All messages added here after main.js runs -->
                     </div>
                     <div id="ErrorInput">Join a channel to start communication.</div>
                 </div>

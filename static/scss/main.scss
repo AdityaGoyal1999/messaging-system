@@ -106,18 +106,14 @@ body {
 .text-r {
     float: right;
     padding-left: 10px;
-    animation-name: hide-text;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
-    animation-play-state: paused;
 }
 
-.msj-rta {
+.msj-right {
     float: right;
     background: #5af080;
 }
 
-.msj {
+.msj-left {
     float: left;
     background: whitesmoke;
 }
