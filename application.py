@@ -51,10 +51,11 @@ def channel():
 @socketio.on("send message")
 def send_message(data):
     selection = data["selection"]
-    if(len(channels[data["channel"]]) >= 100 ):
-        channels[data["channel"]].pop(0)
-    channels[data["channel"]].append((selection, data["user"], data["time"]))
-    emit("announce message", {"selection": selection, "user": data["user"], "time": data["time"], "channelName": data["channelName"]}, broadcast=True)
+    if(data["channel"] != ''):
+        if(len(channels[data["channel"]]) >= 100 ):
+            channels[data["channel"]].pop(0)
+        channels[data["channel"]].append((selection, data["user"], data["time"]))
+        emit("announce message", {"selection": selection, "user": data["user"], "time": data["time"], "channelName": data["channelName"]}, broadcast=True)
 
 @socketio.on("create channel")
 def create_new_channel(data):
@@ -65,10 +66,7 @@ def create_new_channel(data):
 
 @socketio.on("delete sender message")
 def create_new_channel(data):
-    # selection = data["channelName"]
-    # channels[selection] = []
-    # channel_names.append(selection)
-    # print("Cool")
+
     deleting_value = (data["text"], data["name"], data["time"])
-    # print(deleting_value in channels[data["channel"]])
-    channels[data["channel"]].remove(deleting_value)
+    if(deleting_value in channels[data["channel"]] and data["channel"] != ''):
+        channels[data["channel"]].remove(deleting_value)
