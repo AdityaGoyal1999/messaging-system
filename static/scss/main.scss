@@ -32,6 +32,7 @@ body {
     height: 86.5vh;
     background-color: #700391;
     position: absolute;
+    padding: 5px;
     top: 0;
     bottom: 0;
     left: 0;
@@ -59,7 +60,8 @@ body {
 #ErrorInput {
     padding: 20px;
     margin-top: 250px;
-    margin-left: 300px;
+    margin-left: 250px;
+    margin-right: 200px;
 }
 
 .my-custom-scrollbar {
@@ -144,4 +146,31 @@ body {
     font-size: 10px;
     background-color: #7eff9e;
     border-radius: 10px;
+}
+
+.macro {
+    margin-top: 5px;
+    width: 65%;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    box-shadow: 5px 5px gray;
+    margin: 5px;
+    position: relative;
+    animation-name: hide;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+}
+
+@media only screen and (max-width: 768px) {
+    #ErrorInput {
+        text-align: center;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    #MessageBox {
+        width: 90%;
+        padding: 5px;
+    }
 }
