@@ -4,6 +4,13 @@ Web Programming with Python and JavaScript
 
 The project has a chat web application, Flack. It is a single page app that once logged in, doesn't requrie to be loaded again. The app remembers the person once logged in and even after the person has closed the browser. It even remembers the channel that the person was most recently on.
 
+Languages and frameworks used:
+- Flask/python: for server side processing.
+- HTML: Structure of the page.
+- JavaScript: Client side processing of the web app.
+- SCSS, CSS: Styling of the page.
+- Bootstrap: Assisting with the styling of the page.
+
 Note for developers: The documentation is well commented and code repetition has been minimized.
 
 
