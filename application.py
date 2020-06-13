@@ -66,5 +66,6 @@ def create_new_channel(data):
 def create_new_channel(data):
 
     deleting_value = (data["text"], data["name"], data["time"])
-    if(deleting_value in channels[data["channel"]] and data["channel"] != ''):
-        channels[data["channel"]].remove(deleting_value)
+    if data["channel"] != '':
+        if(deleting_value in channels[data["channel"]] and data["channel"] != ''):
+            channels[data["channel"]].remove(deleting_value)
