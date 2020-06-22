@@ -1,6 +1,8 @@
-# Project 2
+# Flack Messaging Application
 
-The project has a chat web application, Flack. It is a single page app that once logged in, doesn't requrie to be loaded again. The app remembers the person once logged in and even after the person has closed the browser. It even remembers the channel that the person was most recently on.
+The project has a chat web application, Flack. It is a single page app that once logged in, doesn't requrie to be loaded again. The app remembers the person once logged in and even after the person has closed the browser. It even remembers the channel that the person was most recently on. 
+
+The app is carefully created in order to be supported by all major browsers in the market. Security for the app is also ensured by using a separate server side and client side approach.
 
 <img src="messaging.gif" width="700px" alt="Project demonstration">
 
